@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<title>Outing | EARC 2027</title>
+	<meta content="Outing | EARC 2027 - Power Reimagined" property="og:title" />
+	<meta content="8 routes across Taipei and Keelung to discover Taiwan's story together." name="description" />
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;200;300;400;500;600;700;800;900" rel="stylesheet" type="text/css" />
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			background-color: #ffffff;
+			color: #101112;
+			font-family: "Lato", Tahoma, Verdana, Segoe, sans-serif;
+		}
+
+		a {
+			color: inherit;
+		}
+
+		.page-wrap {
+			max-width: 1185px;
+			margin: 0 auto;
+			padding: 0 24px;
+		}
+
+		/* ---------- Header ---------- */
+		.site-header {
+			position: relative;
+			z-index: 25;
+			background-color: #0047af;
+			background-image:
+				radial-gradient(circle at 12% 20%, rgba(199, 244, 74, 0.14) 0, transparent 40%),
+				radial-gradient(circle at 88% 78%, rgba(234, 52, 113, 0.16) 0, transparent 45%);
+			padding: 28px 0 56px;
+		}
+
+		.site-header-top {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 16px;
+			flex-wrap: wrap;
+		}
+
+		.site-brand {
+			color: #c7f44a;
+			font-weight: 900;
+			font-size: 20px;
+			letter-spacing: 0.3px;
+			text-decoration: none;
+		}
+
+		.back-home {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			color: #ffffff;
+			font-weight: 700;
+			font-size: 14px;
+			text-decoration: none;
+			background: rgba(255, 255, 255, 0.14);
+			padding: 8px 16px;
+			border-radius: 20px;
+			transition: background 0.2s ease;
+		}
+
+		.back-home:hover {
+			background: rgba(255, 255, 255, 0.24);
+		}
+
+		.site-header-title {
+			margin-top: 40px;
+			text-align: center;
+		}
+
+		.site-header-title h1 {
+			margin: 0;
+			color: #c7f44a;
+			font-size: 56px;
+			font-weight: 900;
+			line-height: 1.05;
+			letter-spacing: 0.3px;
+		}
+
+		.site-header-title .eyebrow {
+			display: block;
+			color: #ffffff;
+			font-size: 13px;
+			font-weight: 800;
+			letter-spacing: 1.5px;
+			text-transform: uppercase;
+			margin-bottom: 12px;
+		}
+
+		.header-info-card {
+			position: absolute;
+			left: 50%;
+			bottom: 0;
+			transform: translate(-50%, 50%);
+			width: min(640px, calc(100% - 48px));
+			background: #c7f44a;
+			border-radius: 16px;
+			box-shadow: 0 16px 36px rgba(9, 30, 66, 0.28);
+			padding: 22px 30px;
+			z-index: 3;
+		}
+
+		.header-info-card p {
+			margin: 0;
+			color: #0b2a52;
+			font-size: 18px;
+			font-weight: 600;
+			line-height: 1.6;
+		}
+
+		/* ---------- Route quick nav ---------- */
+		.route-nav {
+			position: sticky;
+			top: 0;
+			z-index: 20;
+			background: #ffffff;
+			border-bottom: 1px solid #ececec;
+			padding: 16px 0;
+			margin-top: 108px;
+		}
+
+		.route-nav-inner {
+			display: flex;
+			gap: 12px;
+			overflow-x: auto;
+			padding-bottom: 2px;
+			scrollbar-width: thin;
+		}
+
+		.route-pill {
+			--pill-accent: #0047af;
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			flex: 0 0 auto;
+			background: #f4f5f7;
+			color: #101112;
+			text-decoration: none;
+			font-size: 13px;
+			font-weight: 700;
+			padding: 9px 18px;
+			border-radius: 24px;
+			white-space: nowrap;
+			transition: background 0.2s ease, transform 0.2s ease;
+		}
+
+		.route-pill:hover {
+			background: #e9ebef;
+			transform: translateY(-1px);
+		}
+
+		.route-pill-dot {
+			display: inline-block;
+			width: 9px;
+			height: 9px;
+			border-radius: 50%;
+			background: var(--pill-accent);
+			flex: 0 0 auto;
+		}
+
+		/* ---------- Route sections ---------- */
+		.route-section {
+			padding: 64px 0 8px;
+			scroll-margin-top: 76px;
+		}
+
+		#contact {
+			scroll-margin-top: 76px;
+		}
+
+		.route-header {
+			display: flex;
+			align-items: flex-start;
+			gap: 16px;
+			margin-bottom: 32px;
+			flex-wrap: wrap;
+		}
+
+		.route-badge {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 48px;
+			height: 48px;
+			border-radius: 50%;
+			flex: 0 0 auto;
+		}
+
+		.route-badge svg {
+			width: 24px;
+			height: 24px;
+			fill: #ffffff;
+		}
+
+		.route-header-text h2 {
+			margin: 0;
+			font-size: 28px;
+			font-weight: 900;
+			color: #101112;
+			line-height: 1.25;
+		}
+
+		.route-header-text p {
+			margin: 4px 0 0;
+			font-size: 15px;
+			color: #6b6f76;
+			font-weight: 600;
+		}
+
+		.outing-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 24px;
+		}
+
+		.outing-card {
+			background: #ffffff;
+			border: 1px solid #ececec;
+			border-radius: 16px;
+			overflow: hidden;
+			box-shadow: 0 2px 10px rgba(16, 17, 18, 0.04);
+			transition: transform 0.25s ease, box-shadow 0.25s ease;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.outing-card:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 12px 28px rgba(16, 17, 18, 0.09);
+		}
+
+		.outing-photo {
+			aspect-ratio: 16 / 10;
+			position: relative;
+			overflow: hidden;
+			background-color: var(--route-accent);
+		}
+
+		.outing-photo img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+
+		.outing-card-body {
+			padding: 22px;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			flex-grow: 1;
+		}
+
+		.outing-code {
+			align-self: flex-start;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 40px;
+			height: 26px;
+			padding: 0 8px;
+			border-radius: 13px;
+			font-size: 12.5px;
+			font-weight: 900;
+			letter-spacing: 0.3px;
+		}
+
+		.outing-title {
+			margin: 0;
+			font-size: 19px;
+			font-weight: 800;
+			line-height: 1.35;
+			color: #101112;
+		}
+
+		.outing-desc {
+			margin: 0;
+			font-size: 15px;
+			line-height: 1.6;
+			color: #454850;
+		}
+
+		.outing-route {
+			margin: 0;
+			font-size: 13.5px;
+			line-height: 1.6;
+			color: #6b6f76;
+		}
+
+		.outing-route strong {
+			color: #101112;
+		}
+
+		.outing-note {
+			margin: 0;
+			font-size: 12.5px;
+			line-height: 1.5;
+			color: #9a5b00;
+			background: #fff6e5;
+			border-radius: 8px;
+			padding: 8px 10px;
+		}
+
+		.freetime-note {
+			margin: 40px 0 0;
+			text-align: center;
+			font-size: 14.5px;
+			color: #6b6f76;
+			background: #f9fafb;
+			border: 1px solid #ececec;
+			border-radius: 14px;
+			padding: 18px 24px;
+		}
+
+		.freetime-note strong {
+			color: #101112;
+		}
+
+		/* ---------- Footer: Contact Us (matches homepage) ---------- */
+		.site-footer {
+			margin-top: 80px;
+			background-color: #0047af;
+			padding: 48px 0 60px;
+			text-align: center;
+		}
+
+		.site-footer h2 {
+			margin: 0 0 20px;
+			color: #ffffff;
+			font-family: "Lato", Tahoma, Verdana, Segoe, sans-serif;
+			font-size: 38px;
+			font-weight: 900;
+			letter-spacing: normal;
+			line-height: 120%;
+		}
+
+		.footer-social {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.footer-social .icon {
+			padding: 0 10px;
+		}
+
+		.footer-social .icon img {
+			max-height: 32px;
+		}
+
+		/* ---------- Reveal-on-scroll (matches homepage) ---------- */
+		.reveal {
+			opacity: 0;
+			transform: translateY(28px);
+			transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+			will-change: opacity, transform;
+		}
+
+		.reveal.is-visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.reveal-d1 {
+			transition-delay: 0s;
+		}
+
+		.reveal-d2 {
+			transition-delay: 0.09s;
+		}
+
+		.reveal-d3 {
+			transition-delay: 0.18s;
+		}
+
+		.reveal-d4 {
+			transition-delay: 0.27s;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.reveal {
+				opacity: 1;
+				transform: none;
+				transition: none;
+			}
+		}
+
+		/* ---------- Responsive ---------- */
+		@media (max-width: 768px) {
+			.page-wrap {
+				padding: 0 18px;
+			}
+
+			.site-header {
+				padding: 20px 0 74px;
+			}
+
+			.site-header-title h1 {
+				font-size: 46px;
+			}
+
+			.header-info-card {
+				width: calc(100% - 36px);
+				padding: 14px 18px;
+				border-radius: 14px;
+			}
+
+			.header-info-card p {
+				font-size: 15px;
+			}
+
+			.route-nav {
+				top: 0;
+			}
+
+			.route-section {
+				padding: 44px 0 4px;
+			}
+
+			.route-header-text h2 {
+				font-size: 22px;
+			}
+
+			.outing-grid {
+				grid-template-columns: 1fr;
+				gap: 16px;
+			}
+
+			.outing-card-body {
+				padding: 18px;
+			}
+		}
+	</style>
+	<noscript>
+		<style>
+			.reveal {
+				opacity: 1 !important;
+				transform: none !important;
+			}
+		</style>
+	</noscript>
+</head>
+
+<body>
+	<header class="site-header">
+		<div class="page-wrap">
+			<div class="site-header-top">
+				<a class="back-home" href="./earc_2027.html#outing">&larr; Back to Home</a>
+			</div>
+			<div class="site-header-title">
+				<span class="eyebrow">EARC 2027</span>
+				<h1>Outing</h1>
+				<div class="header-info-card">
+					<p>Outing takes place on Friday, July 23, 12:00&ndash;21:30. Pick one Culture &amp; History or City &amp; Scenery route below.</p>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<main>
+		<div class="page-wrap">
+			<nav class="route-nav" aria-label="Jump to route category">
+				<div class="route-nav-inner">
+					<a class="route-pill" href="#route-CH" style="--pill-accent:#0047af;"><span class="route-pill-dot"></span>Culture &amp; History</a>
+					<a class="route-pill" href="#route-CS" style="--pill-accent:#ea3471;"><span class="route-pill-dot"></span>City &amp; Scenery</a>
+				</div>
+			</nav>
+
+			<section class="route-section" id="route-CH">
+				<div class="route-header reveal">
+					<span class="route-badge" style="background:#0047af;">
+						<svg viewBox="0 0 48 48"><polygon points="6,18 24,6 42,18"/><rect x="8" y="18" width="32" height="4"/><rect x="12" y="24" width="4" height="14"/><rect x="22" y="24" width="4" height="14"/><rect x="32" y="24" width="4" height="14"/><rect x="8" y="40" width="32" height="3"/></svg>
+					</span>
+					<div class="route-header-text">
+						<h2>Culture &amp; History Route</h2>
+					</div>
+				</div>
+				<div class="outing-grid">
+					<article class="outing-card reveal reveal-d1">
+						<div class="outing-photo" style="--route-accent:#0047af;">
+							<img src="./assets/outing/ch1-dadaocheng.jpg" alt="Historic A.S. Watson &amp; Co. building on Dihua Street, Dadaocheng, Taipei" loading="lazy" />
+						</div>
+						<div class="outing-card-body">
+							<span class="outing-code" style="background:#0047af;color:#ffffff;">CH1</span>
+							<h3 class="outing-title">Dadaocheng: Taipei's Old Tea Town</h3>
+							<p class="outing-desc">Dadaocheng was once the beating heart of Taiwan's global tea trade and the birthplace of the 1920s movement for democracy and cultural enlightenment. Its beautifully preserved shophouses, century-old temple, and riverside sunset make it one of Taipei's most atmospheric old quarters.</p>
+							<p class="outing-route"><strong>Route:</strong> Dadaoqiantou Station &rarr; Taiwan New Cultural Movement Memorial Hall &rarr; Dihua Street &rarr; Xiahai City God Temple &rarr; Dadaocheng Wharf (sunset) &rarr; Pier-5 Container Market (dinner)</p>
+							<p class="outing-note">Note: this route includes a stop at a non-Christian religious site.</p>
+						</div>
+					</article>
+					<article class="outing-card reveal reveal-d2">
+						<div class="outing-photo" style="--route-accent:#0047af;">
+							<img src="./assets/outing/ch2-tamsui.jpg" alt="Tamsui Presbyterian Church, New Taipei" loading="lazy" />
+						</div>
+						<div class="outing-card-body">
+							<span class="outing-code" style="background:#0047af;color:#ffffff;">CH2</span>
+							<h3 class="outing-title">Tamsui: The Mackay Trail</h3>
+							<p class="outing-desc">Tamsui is where Canadian missionary Dr. George Mackay landed in 1872 and launched northern Taiwan's medical and educational missions. Its red-brick colonial architecture and golden riverside sunset still carry that legacy today.</p>
+							<p class="outing-route"><strong>Route:</strong> Tamsui Station &rarr; Tamsui Presbyterian Church &rarr; Hobe Mackay Hospital &rarr; Dr. Mackay Statue Park &rarr; Tamsui Golden Riverside (sunset) &rarr; Tamsui Old Street (dinner)</p>
+						</div>
+					</article>
+					<article class="outing-card reveal reveal-d3">
+						<div class="outing-photo" style="--route-accent:#0047af;">
+							<img src="./assets/outing/ch3-palace-museum.jpg" alt="A jade artifact on display at the National Palace Museum, Taipei" loading="lazy" />
+						</div>
+						<div class="outing-card-body">
+							<span class="outing-code" style="background:#0047af;color:#ffffff;">CH3</span>
+							<h3 class="outing-title">The National Palace Museum</h3>
+							<p class="outing-desc">Home to nearly 700,000 pieces of Chinese art and antiquities &mdash; including treasures preserved through decades of upheaval &mdash; the National Palace Museum holds one of the world's great collections. Afterward, unwind at Yuanshan Expo Park, the green riverside park built for Taipei's international flower exposition.</p>
+							<p class="outing-route"><strong>Route:</strong> National Palace Museum &rarr; Yuanshan Expo Park (dinner)</p>
+						</div>
+					</article>
+					<article class="outing-card reveal reveal-d4">
+						<div class="outing-photo" style="--route-accent:#0047af;">
+							<img src="./assets/outing/ch4-jingmei.jpg" alt="A former detention block at Jing-Mei White Terror Memorial Park, Taipei" loading="lazy" />
+						</div>
+						<div class="outing-card-body">
+							<span class="outing-code" style="background:#0047af;color:#ffffff;">CH4</span>
+							<h3 class="outing-title">Taiwan's Road to Democracy</h3>
+							<p class="outing-desc">Once a martial-law-era detention center and military court, Jing-Mei is now preserved as a national human rights museum &mdash; a sobering, important stop for understanding Taiwan's decades-long journey to democracy. Hike up Xianji Rock afterward for one of the best sunset views over the city.</p>
+							<p class="outing-route"><strong>Route:</strong> National Human Rights Museum &mdash; Jing-Mei White Terror Memorial Park &rarr; Xianji Rock (city view) &rarr; Jingmei Night Market (dinner)</p>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<section class="route-section" id="route-CS">
+				<div class="route-header reveal">
+					<span class="route-badge" style="background:#ea3471;">
+						<svg viewBox="0 0 48 48"><polygon points="6,38 18,16 26,30 32,20 42,38"/><circle cx="34" cy="12" r="4"/></svg>
+					</span>
+					<div class="route-header-text">
+						<h2>City &amp; Scenery Route</h2>
+					</div>
+				</div>
+				<div class="outing-grid">
+					<article class="outing-card reveal reveal-d1">
+						<div class="outing-photo" style="--route-accent:#ea3471;">
+							<img src="./assets/outing/cs1-yangmingshan.jpg" alt="Qingtiangang grassland, Yangmingshan, Taipei" loading="lazy" />
+						</div>
+						<div class="outing-card-body">
+							<span class="outing-code" style="background:#ea3471;color:#ffffff;">CS1</span>
+							<h3 class="outing-title">Yangmingshan: Grasslands &amp; Trails</h3>
+							<p class="outing-desc">One of Taiwan's few national parks reachable within the city, Yangmingshan's volcanic peaks and rolling grasslands &mdash; look out for grazing water buffalo &mdash; offer some of the best hiking and scenery near Taipei.</p>
+							<p class="outing-route"><strong>Route:</strong> Lengshuikeng Trail &rarr; Qingtiangang Grassland &rarr; Xiaoyoukeng &rarr; afternoon tea near Caoshan Villa &rarr; Shilin Night Market</p>
+						</div>
+					</article>
+					<article class="outing-card reveal reveal-d2">
+						<div class="outing-photo" style="--route-accent:#ea3471;">
+							<img src="https://images.unsplash.com/photo-1701736281912-34fc86583f7f?w=900&amp;q=80&amp;fit=crop&amp;auto=format" alt="Colorful waterfront houses at Zhengbin Port, Keelung" loading="lazy" />
+						</div>
+						<div class="outing-card-body">
+							<span class="outing-code" style="background:#ea3471;color:#ffffff;">CS2</span>
+							<h3 class="outing-title">Keelung: Taiwan's First Port</h3>
+							<p class="outing-desc">As Taiwan's gateway to Northeast Asia, Keelung was home to the island's first railway and first modern port city. It's also where Dr. Mackay planted his very first church and famously preached &mdash; and pulled teeth &mdash; outside the temple gates.</p>
+							<p class="outing-route"><strong>Route:</strong> Keelung Presbyterian Church &rarr; Qing'an Temple &rarr; Yang Ming Maritime Culture &amp; Art Museum &rarr; Ocean Plaza &rarr; Miaokou Night Market (dinner)</p>
+							<p class="outing-note">Note: this route includes a stop at a non-Christian religious site.</p>
+						</div>
+					</article>
+					<article class="outing-card reveal reveal-d3">
+						<div class="outing-photo" style="--route-accent:#ea3471;">
+							<img src="./assets/outing/cs3-taipei101.jpg" alt="Taipei 101 rising above the city skyline" loading="lazy" />
+						</div>
+						<div class="outing-card-body">
+							<span class="outing-code" style="background:#ea3471;color:#ffffff;">CS3</span>
+							<h3 class="outing-title">Taipei 101 &amp; Elephant Mountain</h3>
+							<p class="outing-desc">Once the tallest building in the world, Taipei 101 anchors the city's skyline &mdash; and the classic photo spot for it is the short hike up Elephant Mountain, a local favorite for sunset and night views.</p>
+							<p class="outing-route"><strong>Route:</strong> Taipei 101 &rarr; Elephant Mountain (rain plan: Songshan Cultural Park &amp; Sun Yat-sen Memorial Hall) &rarr; Linjiang Street Night Market</p>
+						</div>
+					</article>
+					<article class="outing-card reveal reveal-d4">
+						<div class="outing-photo" style="--route-accent:#ea3471;">
+							<img src="./assets/outing/cs4-ximending.jpg" alt="Ximending's rainbow crosswalk, Taipei" loading="lazy" />
+						</div>
+						<div class="outing-card-body">
+							<span class="outing-code" style="background:#ea3471;color:#ffffff;">CS4</span>
+							<h3 class="outing-title">Yongkang Street &amp; Ximending</h3>
+							<p class="outing-desc">From the leafy, literary lanes around Yongkang Street to Ximending &mdash; Taipei's youth culture hub since the Japanese colonial era &mdash; this route traces the city's creative, everyday side.</p>
+							<p class="outing-route"><strong>Route:</strong> Yongkang Street &rarr; Da'an Forest Park &rarr; Liberty Square &rarr; Ximending</p>
+						</div>
+					</article>
+				</div>
+				<p class="freetime-note reveal">Prefer not to join a route? <strong>Free time</strong> is also available &mdash; just let us know in the registration form.</p>
+			</section>
+		</div>
+	</main>
+
+	<footer class="site-footer" id="contact">
+		<div class="page-wrap">
+			<h2 class="reveal">Contact Us</h2>
+			<div class="footer-social reveal reveal-d2">
+				<span class="icon"><a href="https://www.facebook.com/profile.php?id=61592580462582" target="_self"><img alt="Facebook" src="https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/circle-color/facebook@2x.png" title="facebook" /></a></span>
+				<span class="icon"><a href="https://www.instagram.com/earc2027" target="_self"><img alt="Instagram" src="https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/circle-color/instagram@2x.png" title="instagram" /></a></span>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+	(function () {
+		"use strict";
+		var targets = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+		if (!targets.length) { return; }
+
+		if (!("IntersectionObserver" in window)) {
+			targets.forEach(function (el) { el.classList.add("is-visible"); });
+			return;
+		}
+
+		var io = new IntersectionObserver(function (entries) {
+			entries.forEach(function (entry) {
+				if (entry.isIntersecting) {
+					entry.target.classList.add("is-visible");
+					io.unobserve(entry.target);
+				}
+			});
+		}, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+		targets.forEach(function (el) { io.observe(el); });
+
+		function revealIfAtBottom() {
+			var atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+			if (!atBottom) { return; }
+			targets.forEach(function (el) {
+				if (!el.classList.contains("is-visible")) {
+					el.classList.add("is-visible");
+					io.unobserve(el);
+				}
+			});
+		}
+		window.addEventListener("scroll", revealIfAtBottom, { passive: true });
+		window.addEventListener("resize", revealIfAtBottom);
+		revealIfAtBottom();
+	})();
+	</script>
+</body>
+
+</html>
